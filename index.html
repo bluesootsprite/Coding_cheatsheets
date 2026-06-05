@@ -95,8 +95,8 @@
 </head>
 <body>
 
-    <h1>R Code Snippet Lookup Map</h1>
-    <p>I can use this interactive search tool to find boilerplate R syntax code structures sorted by intent. Type keywords into the interface below to instantly narrow down my options.</p>
+    <h1>R Code Lookup Map</h1>
+    <p> Hi! You can find R code here depending on what you are trying to do with your data. Just type in some keywords!</p>
     
     <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Type to search for an intent, specific function name, or library...">
 
@@ -111,7 +111,7 @@
         </thead>
         <tbody>
             <tr>
-                <td>Add a baseline identity line to a scatterplot</td>
+                <td>Add a baseline identity line to a scatterplot (note: Use this to show <i>d'</i> = 0, for example) </td>
                 <td><code>geom_abline()</code></td>
                 <td><span class="pkg-badge">ggplot2</span></td>
                 <td><code class="example-code">geom_abline(slope = 1, intercept = 0, linetype = &#x27;dashed&#x27;, color = &#x27;red&#x27;)</code></td>
@@ -135,13 +135,13 @@
                 <td><code class="example-code">spectro(audio_wave, wl = 512, tlim = c(0, 1), flim = c(0, 2), scale = FALSE)</code></td>
             </tr>
             <tr>
-                <td>Apply global orthogonal contrast schemes</td>
+                <td>Apply global contrasts (note to self: default is contr.treatment which you shouldn't use in combination with a type 3 ANOVA) </td>
                 <td><code>options()</code></td>
                 <td><span class="pkg-badge">base</span></td>
                 <td><code class="example-code">options(contrasts = c(&#x27;contr.sum&#x27;, &#x27;contr.poly&#x27;))</code></td>
             </tr>
             <tr>
-                <td>Arrange separate independent charts into a layout</td>
+                <td>Arrange separate independent plots into a specific layout</td>
                 <td><code>patchwork syntax</code></td>
                 <td><span class="pkg-badge">patchwork</span></td>
                 <td><code class="example-code">combined_layout &lt;- plot1 / (plot2 + plot3)</code></td>
@@ -153,25 +153,25 @@
                 <td><code class="example-code">df %&gt;% mutate(group_id = ntile(continuous_x, n = 4))</code></td>
             </tr>
             <tr>
-                <td>Bind data frame arrays together vertically by rows</td>
+                <td>Bind data frame arrays together vertically by rows (nr of columns need to match)</td>
                 <td><code>rbind()</code></td>
                 <td><span class="pkg-badge">base</span></td>
                 <td><code class="example-code">combined_df &lt;- rbind(df_part1, df_part2)</code></td>
             </tr>
             <tr>
-                <td>Calculate individual subject leverage diagnostics</td>
+                <td>Calculate individual subject impact diagnostics</td>
                 <td><code>influence()</code></td>
                 <td><span class="pkg-badge">influence.ME</span></td>
                 <td><code class="example-code">model_influence &lt;- influence(my_model, group = &#x27;subject_id&#x27;)</code></td>
             </tr>
             <tr>
-                <td>Check models for singular / over-parameterization</td>
+                <td>Check models for singular / over-parameterization (note: Singular is not good!) </td>
                 <td><code>isSingular()</code></td>
                 <td><span class="pkg-badge">lme4</span></td>
                 <td><code class="example-code">isSingular(my_mixed_model)</code></td>
             </tr>
             <tr>
-                <td>Compare models using nested likelihood-ratio tests</td>
+                <td>Compare models using nested likelihood-ratio tests (note: use same dataframe for models) </td>
                 <td><code>anova()</code></td>
                 <td><span class="pkg-badge">stats</span></td>
                 <td><code class="example-code">anova(base_model, complex_model)</code></td>
@@ -183,13 +183,13 @@
                 <td><code class="example-code">ggplot(df, aes(x = variable_x, y = variable_y, fill = metric)) + geom_tile()</code></td>
             </tr>
             <tr>
-                <td>Dodge overlapping chart assets to prevent collision</td>
+                <td>Dodge overlapping chart assets </td>
                 <td><code>position_dodge()</code></td>
                 <td><span class="pkg-badge">ggplot2</span></td>
                 <td><code class="example-code">geom_line(position = position_dodge(width = 0.3))</code></td>
             </tr>
             <tr>
-                <td>Drop unused empty factor levels from a data subset</td>
+                <td>Drop unused empty factor levels from a data subset (note: this is better than subset if you want to get rid of that level completely) </td>
                 <td><code>droplevels()</code></td>
                 <td><span class="pkg-badge">base</span></td>
                 <td><code class="example-code">subset_df &lt;- droplevels(subset(df, group_factor == &#x27;level_A&#x27;))</code></td>
@@ -249,7 +249,7 @@
                 <td><code class="example-code">df_counts %&gt;% complete(factor_x, factor_y, fill = list(n = 0))</code></td>
             </tr>
             <tr>
-                <td>Invert coordinates (e.g. for clinical audiograms)</td>
+                <td>Invert coordinates (note: for audiograms for example)</td>
                 <td><code>scale_y_reverse()</code></td>
                 <td><span class="pkg-badge">ggplot2</span></td>
                 <td><code class="example-code">scale_y_reverse(limits = c(100, -10), breaks = seq(-20, 100, 20))</code></td>
@@ -273,7 +273,7 @@
                 <td><code class="example-code">df %&gt;% mutate(failure_n = total_n - success_n)</code></td>
             </tr>
             <tr>
-                <td>Override baseline control levels for factors</td>
+                <td>Override baseline control levels for factors (note: consider what you want your baseline to be in posthoc tests etc, also determines order in ggplot)</td>
                 <td><code>relevel()</code></td>
                 <td><span class="pkg-badge">stats</span></td>
                 <td><code class="example-code">df$factor_var &lt;- relevel(df$factor_var, ref = &#x27;control_level&#x27;)</code></td>
@@ -285,10 +285,16 @@
                 <td><code class="example-code">df &lt;- read.csv(&#x27;raw_data.csv&#x27;)</code></td>
             </tr>
             <tr>
-                <td>Read serialized binary R datasets</td>
+                <td>Read R datasets and models (note: read out both saved_dataset$model and saved_dataset$data if you saved list)</td>
                 <td><code>readRDS()</code></td>
                 <td><span class="pkg-badge">base</span></td>
                 <td><code class="example-code">df &lt;- readRDS(&#x27;saved_dataset.rds&#x27;)</code></td>
+            </tr>
+                        <tr>
+                <td>Save model and data as is in list, then save list in saveRDS() (note: when reading with readRDS, assign model and data) </td>
+                <td><code>saveRDS()</code></td>
+                <td><span class="pkg-badge">base</span></td>
+                <td><code class="example-code"> save_this_list <- list(model = modelA, data = df), saveRDS(save_this_list, "savedlist.rds") </code></td>
             </tr>
             <tr>
                 <td>Run post-hoc pairwise contrast comparisons</td>
