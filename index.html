@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>R Workflow Action Lookup Map</title>
+    <title>R Code Action Lookup Map</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -294,7 +294,7 @@
                 <td>Save model and data as is in list, then save list in saveRDS() (note: when reading with readRDS, assign model and data) </td>
                 <td><code>saveRDS()</code></td>
                 <td><span class="pkg-badge">base</span></td>
-                <td><code class="example-code"> save_this_list <- list(model = modelA, data = df), saveRDS(save_this_list, "savedlist.rds") </code></td>
+                <td><code class="example-code"> save_this_list <- list(model = modelA, data = df) <br> saveRDS(save_this_list, "savedlist.rds") </code></td>
             </tr>
             <tr>
                 <td>Run post-hoc pairwise contrast comparisons</td>
@@ -303,7 +303,7 @@
                 <td><code class="example-code">contrast(emm_object, method = &#x27;pairwise&#x27;, adjust = &#x27;bonferroni&#x27;)</code></td>
             </tr>
             <tr>
-                <td>Scale and normalize continuous data parameters</td>
+                <td>Scale and normalize continuous data parameters (note: if you add as.numeric it will just be one number. This z-scores your data, much easier for modeling!)</td>
                 <td><code>scale()</code></td>
                 <td><span class="pkg-badge">base</span></td>
                 <td><code class="example-code">df$scaled_x &lt;- as.numeric(scale(log(df$raw_x)))</code></td>
@@ -327,13 +327,13 @@
                 <td><code class="example-code">as.numeric(strsplit(string_variable, &#x27;, &#x27;)[[1]])</code></td>
             </tr>
             <tr>
-                <td>Transform wide row structures into long tall data</td>
+                <td>Transform wide row structures into long data</td>
                 <td><code>pivot_longer()</code></td>
                 <td><span class="pkg-badge">tidyr</span></td>
                 <td><code class="example-code">pivot_longer(cols = -c(id_col, group_col), names_to = &#x27;key_col&#x27;, values_to = &#x27;value_col&#x27;)</code></td>
             </tr>
             <tr>
-                <td>Tune iteration bounds or change optimization engines</td>
+                <td>Tune iteration bounds or change optimization engines (note: try this when your model isn't converging) </td>
                 <td><code>glmerControl()</code></td>
                 <td><span class="pkg-badge">lme4</span></td>
                 <td><code class="example-code">glmerControl(optimizer = &#x27;bobyqa&#x27;, optCtrl = list(maxfun = 1e5))</code></td>
