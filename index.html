@@ -140,6 +140,19 @@
                 <td><span class="pkg-badge">base</span></td>
                 <td><code class="example-code">options(contrasts = c(&#x27;contr.sum&#x27;, &#x27;contr.poly&#x27;))</code></td>
             </tr>
+                        <tr>
+                <td> Figuring out which libraries/packages are active in your R session that include a function with the same name (like mutliple packages have their own version of filter or select) </td>
+                <td><code>environment(function_name)</code></td>
+                <td><span class="pkg-badge">base</span></td>
+                <td><code class="example-code">environment(select)</code></td>
+            </tr>
+                                    <tr>
+                <td> Figuring out which version of a function is currently active when multiple libraries have a function with the same name (note: when your function isn't working the way you thought it would, check whether you are calling the correct one!)<br> 
+                note2: to select your specific function, add the library name in front followed by :: -> Example: dplyr::select </td>
+                <td><code>find("function_name")</code></td>
+                <td><span class="pkg-badge">base</span></td>
+                <td><code class="example-code">find("select")</code></td>
+            </tr>
             <tr>
                 <td>Arrange separate independent plots into a specific layout</td>
                 <td><code>patchwork syntax</code></td>
