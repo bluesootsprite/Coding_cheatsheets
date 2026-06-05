@@ -2,55 +2,342 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My R Workflow Lookup Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R Workflow Action Lookup Map</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; margin: 40px; color: #24292e; }
-        h1 { border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
-        #searchInput { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #e1e4e8; border-radius: 6px; font-size: 16px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { text-align: left; padding: 12px; border-bottom: 1px solid #e1e4e8; }
-        th { background-color: #f6f8fa; }
-        tr:hover { background-color: #f6f8fa; }
-        code { background-color: rgba(27,31,35,0.05); padding: .2em .4em; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 85%; }
-        .example-code { color: #005cc5; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            margin: 40px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+            color: #24292e;
+            line-height: 1.5;
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eaecef;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #586069;
+            font-size: 16px;
+            margin-bottom: 24px;
+        }
+        #searchInput {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 16px;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            box-sizing: border-box;
+            background-color: #fafbfc;
+            margin-bottom: 24px;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+        #searchInput:focus {
+            outline: none;
+            border-color: #0366d6;
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(3,102,214,0.3);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th {
+            background-color: #f6f8fa;
+            color: #24292e;
+            font-weight: 600;
+            padding: 12px;
+            border: 1px solid #e1e4e8;
+            text-align: left;
+        }
+        td {
+            padding: 12px;
+            border: 1px solid #e1e4e8;
+            text-align: left;
+            font-size: 14px;
+        }
+        tr:nth-child(even) {
+            background-color: #fcfcfc;
+        }
+        tr:hover {
+            background-color: #f6f8fa;
+        }
+        code {
+            background-color: rgba(27,31,35,0.05);
+            padding: .2em .4em;
+            border-radius: 3px;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 85%;
+        }
+        .example-code {
+            color: #005cc5;
+            display: block;
+            white-space: pre-wrap;
+            background-color: #f6f8fa;
+            padding: 8px;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+        }
+        .pkg-badge {
+            background-color: #e2e8f0;
+            color: #4a5568;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
 
-    <h1>My R Workflow Function Lookup</h1>
-    <p>Type what you intend to do in the search box below to find the correct R function instantly.</p>
+    <h1>R Code Snippet Lookup Map</h1>
+    <p>I can use this interactive search tool to find boilerplate R syntax code structures sorted by intent. Type keywords into the interface below to instantly narrow down my options.</p>
     
-    <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search for an action, function, or package...">
+    <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Type to search for an intent, specific function name, or library...">
 
     <table id="lookupTable">
         <thead>
             <tr>
                 <th style="width: 35%;">My Intent / What Action I Want to Do</th>
-                <th style="width: 15%;">Function</th>
-                <th style="width: 10%;">Package</th>
-                <th style="width: 40%;">Operational Implementation Example</th>
+                <th style="width: 18%;">Function</th>
+                <th style="width: 12%;">Package</th>
+                <th style="width: 35%;">Operational Implementation Example</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td><b>A</b>dd a baseline identity line to a scatterplot</td>
+                <td>Add a baseline identity line to a scatterplot</td>
                 <td><code>geom_abline()</code></td>
-                <td>ggplot2</td>
-                <td><code class="example-code">geom_abline(slope = 1, intercept = 0, linetype = 'dashed')</code></td>
+                <td><span class="pkg-badge">ggplot2</span></td>
+                <td><code class="example-code">geom_abline(slope = 1, intercept = 0, linetype = &#x27;dashed&#x27;, color = &#x27;red&#x27;)</code></td>
             </tr>
             <tr>
-                <td><b>A</b>ggregate statistics with multi-level groupings</td>
+                <td>Add customized error bars to my graphs</td>
+                <td><code>geom_errorbar()</code></td>
+                <td><span class="pkg-badge">ggplot2</span></td>
+                <td><code class="example-code">geom_errorbar(aes(ymin = mean_val - se_val, ymax = mean_val + se_val), width = 0.2)</code></td>
+            </tr>
+            <tr>
+                <td>Aggregate statistics with multi-level groupings</td>
                 <td><code>summarise()</code></td>
-                <td>dplyr</td>
-                <td><code class="example-code">summarise(Mean = mean(acc), SD = sd(acc), .groups = 'drop')</code></td>
+                <td><span class="pkg-badge">dplyr</span></td>
+                <td><code class="example-code">df %&gt;% group_by(factor1) %&gt;% summarise(mean_y = mean(y_val, na.rm = TRUE), .groups = &#x27;drop&#x27;)</code></td>
             </tr>
             <tr>
-                <td><b>C</b>heck models for singular / over-parameterization</td>
-                <td><code>isSingular()</code></td>
-                <td>lme4</td>
-                <td><code class="example-code">isSingular(my_glmer_model)</code></td>
+                <td>Analyze raw audio spectrogram visuals</td>
+                <td><code>spectro()</code></td>
+                <td><span class="pkg-badge">seewave</span></td>
+                <td><code class="example-code">spectro(audio_wave, wl = 512, tlim = c(0, 1), flim = c(0, 2), scale = FALSE)</code></td>
             </tr>
-            <!-- Repeat for other rows -->
+            <tr>
+                <td>Apply global orthogonal contrast schemes</td>
+                <td><code>options()</code></td>
+                <td><span class="pkg-badge">base</span></td>
+                <td><code class="example-code">options(contrasts = c(&#x27;contr.sum&#x27;, &#x27;contr.poly&#x27;))</code></td>
+            </tr>
+            <tr>
+                <td>Arrange separate independent charts into a layout</td>
+                <td><code>patchwork syntax</code></td>
+                <td><span class="pkg-badge">patchwork</span></td>
+                <td><code class="example-code">combined_layout &lt;- plot1 / (plot2 + plot3)</code></td>
+            </tr>
+            <tr>
+                <td>Bin continuous data into quantile groups</td>
+                <td><code>ntile()</code></td>
+                <td><span class="pkg-badge">dplyr</span></td>
+                <td><code class="example-code">df %&gt;% mutate(group_id = ntile(continuous_x, n = 4))</code></td>
+            </tr>
+            <tr>
+                <td>Bind data frame arrays together vertically by rows</td>
+                <td><code>rbind()</code></td>
+                <td><span class="pkg-badge">base</span></td>
+                <td><code class="example-code">combined_df &lt;- rbind(df_part1, df_part2)</code></td>
+            </tr>
+            <tr>
+                <td>Calculate individual subject leverage diagnostics</td>
+                <td><code>influence()</code></td>
+                <td><span class="pkg-badge">influence.ME</span></td>
+                <td><code class="example-code">model_influence &lt;- influence(my_model, group = &#x27;subject_id&#x27;)</code></td>
+            </tr>
+            <tr>
+                <td>Check models for singular / over-parameterization</td>
+                <td><code>isSingular()</code></td>
+                <td><span class="pkg-badge">lme4</span></td>
+                <td><code class="example-code">isSingular(my_mixed_model)</code></td>
+            </tr>
+            <tr>
+                <td>Compare models using nested likelihood-ratio tests</td>
+                <td><code>anova()</code></td>
+                <td><span class="pkg-badge">stats</span></td>
+                <td><code class="example-code">anova(base_model, complex_model)</code></td>
+            </tr>
+            <tr>
+                <td>Construct matrix tiling heatmaps</td>
+                <td><code>geom_tile()</code></td>
+                <td><span class="pkg-badge">ggplot2</span></td>
+                <td><code class="example-code">ggplot(df, aes(x = variable_x, y = variable_y, fill = metric)) + geom_tile()</code></td>
+            </tr>
+            <tr>
+                <td>Dodge overlapping chart assets to prevent collision</td>
+                <td><code>position_dodge()</code></td>
+                <td><span class="pkg-badge">ggplot2</span></td>
+                <td><code class="example-code">geom_line(position = position_dodge(width = 0.3))</code></td>
+            </tr>
+            <tr>
+                <td>Drop unused empty factor levels from a data subset</td>
+                <td><code>droplevels()</code></td>
+                <td><span class="pkg-badge">base</span></td>
+                <td><code class="example-code">subset_df &lt;- droplevels(subset(df, group_factor == &#x27;level_A&#x27;))</code></td>
+            </tr>
+            <tr>
+                <td>Evaluate Type-II/III Analysis of Deviance tables</td>
+                <td><code>Anova()</code></td>
+                <td><span class="pkg-badge">car</span></td>
+                <td><code class="example-code">Anova(my_mixed_model, type = 3)</code></td>
+            </tr>
+            <tr>
+                <td>Extract random effect matrices from mixed models</td>
+                <td><code>ranef()</code></td>
+                <td><span class="pkg-badge">lme4</span></td>
+                <td><code class="example-code">random_effects_matrix &lt;- ranef(my_mixed_model)$subject_id</code></td>
+            </tr>
+            <tr>
+                <td>Facet plots into multi-panels by columns/rows</td>
+                <td><code>facet_wrap()</code></td>
+                <td><span class="pkg-badge">ggplot2</span></td>
+                <td><code class="example-code">facet_wrap(~ condition_factor)</code></td>
+            </tr>
+            <tr>
+                <td>Facet with independent per-panel coordinate scales</td>
+                <td><code>facet_wrap2()</code></td>
+                <td><span class="pkg-badge">ggh4x</span></td>
+                <td><code class="example-code">facet_wrap2(vars(panel_factor), axes = &#x27;all&#x27;, remove_labels = &#x27;y&#x27;)</code></td>
+            </tr>
+            <tr>
+                <td>Filter rows out using custom logical statements</td>
+                <td><code>filter()</code></td>
+                <td><span class="pkg-badge">dplyr</span></td>
+                <td><code class="example-code">df %&gt;% filter(numeric_column == 50)</code></td>
+            </tr>
+            <tr>
+                <td>Find optimal model terms via backward elimination</td>
+                <td><code>buildmer()</code></td>
+                <td><span class="pkg-badge">buildmer</span></td>
+                <td><code class="example-code">buildmer(cbind(success_n, failure_n) ~ continuous_x * factor1, data = df, family = binomial)</code></td>
+            </tr>
+            <tr>
+                <td>Fit generalized linear mixed-effects frameworks</td>
+                <td><code>glmer()</code></td>
+                <td><span class="pkg-badge">lme4</span></td>
+                <td><code class="example-code">glmer(cbind(success_n, failure_n) ~ continuous_x + (1 | subject_id), family = binomial, data = df)</code></td>
+            </tr>
+            <tr>
+                <td>Fit standard linear mixed-effects frameworks</td>
+                <td><code>lmer()</code></td>
+                <td><span class="pkg-badge">lme4</span></td>
+                <td><code class="example-code">my_lmm &lt;- lmer(continuous_y ~ fixed_x1 * fixed_x2 + (1 | subject_id), data = df)</code></td>
+            </tr>
+            <tr>
+                <td>Force zeroes into missing conditional combinations</td>
+                <td><code>complete()</code></td>
+                <td><span class="pkg-badge">tidyr</span></td>
+                <td><code class="example-code">df_counts %&gt;% complete(factor_x, factor_y, fill = list(n = 0))</code></td>
+            </tr>
+            <tr>
+                <td>Invert coordinates (e.g. for clinical audiograms)</td>
+                <td><code>scale_y_reverse()</code></td>
+                <td><span class="pkg-badge">ggplot2</span></td>
+                <td><code class="example-code">scale_y_reverse(limits = c(100, -10), breaks = seq(-20, 100, 20))</code></td>
+            </tr>
+            <tr>
+                <td>Map custom factor labels and levels manually</td>
+                <td><code>factor()</code></td>
+                <td><span class="pkg-badge">base</span></td>
+                <td><code class="example-code">factor(raw_variable, levels = c(10, 20), labels = c(&#x27;Label_A&#x27;, &#x27;Label_B&#x27;))</code></td>
+            </tr>
+            <tr>
+                <td>Melt multi-variable matrices into long data frames</td>
+                <td><code>melt()</code></td>
+                <td><span class="pkg-badge">reshape2</span></td>
+                <td><code class="example-code">long_df &lt;- reshape2::melt(matrix_data)</code></td>
+            </tr>
+            <tr>
+                <td>Modify or add calculation columns to a frame</td>
+                <td><code>mutate()</code></td>
+                <td><span class="pkg-badge">dplyr</span></td>
+                <td><code class="example-code">df %&gt;% mutate(failure_n = total_n - success_n)</code></td>
+            </tr>
+            <tr>
+                <td>Override baseline control levels for factors</td>
+                <td><code>relevel()</code></td>
+                <td><span class="pkg-badge">stats</span></td>
+                <td><code class="example-code">df$factor_var &lt;- relevel(df$factor_var, ref = &#x27;control_level&#x27;)</code></td>
+            </tr>
+            <tr>
+                <td>Read file data sheets stored in CSV format</td>
+                <td><code>read.csv()</code></td>
+                <td><span class="pkg-badge">utils</span></td>
+                <td><code class="example-code">df &lt;- read.csv(&#x27;raw_data.csv&#x27;)</code></td>
+            </tr>
+            <tr>
+                <td>Read serialized binary R datasets</td>
+                <td><code>readRDS()</code></td>
+                <td><span class="pkg-badge">base</span></td>
+                <td><code class="example-code">df &lt;- readRDS(&#x27;saved_dataset.rds&#x27;)</code></td>
+            </tr>
+            <tr>
+                <td>Run post-hoc pairwise contrast comparisons</td>
+                <td><code>contrast()</code></td>
+                <td><span class="pkg-badge">emmeans</span></td>
+                <td><code class="example-code">contrast(emm_object, method = &#x27;pairwise&#x27;, adjust = &#x27;bonferroni&#x27;)</code></td>
+            </tr>
+            <tr>
+                <td>Scale and normalize continuous data parameters</td>
+                <td><code>scale()</code></td>
+                <td><span class="pkg-badge">base</span></td>
+                <td><code class="example-code">df$scaled_x &lt;- as.numeric(scale(log(df$raw_x)))</code></td>
+            </tr>
+            <tr>
+                <td>Select targeted variables out of data frames</td>
+                <td><code>select()</code></td>
+                <td><span class="pkg-badge">dplyr</span></td>
+                <td><code class="example-code">df %&gt;% select(id_col, group_col, variable_1)</code></td>
+            </tr>
+            <tr>
+                <td>Separate compound text columns using boundaries</td>
+                <td><code>separate()</code></td>
+                <td><span class="pkg-badge">tidyr</span></td>
+                <td><code class="example-code">separate(compound_text, into = c(&#x27;part_1&#x27;, &#x27;part_2&#x27;), sep = 1)</code></td>
+            </tr>
+            <tr>
+                <td>Split strings dynamically into element lists</td>
+                <td><code>strsplit()</code></td>
+                <td><span class="pkg-badge">base</span></td>
+                <td><code class="example-code">as.numeric(strsplit(string_variable, &#x27;, &#x27;)[[1]])</code></td>
+            </tr>
+            <tr>
+                <td>Transform wide row structures into long tall data</td>
+                <td><code>pivot_longer()</code></td>
+                <td><span class="pkg-badge">tidyr</span></td>
+                <td><code class="example-code">pivot_longer(cols = -c(id_col, group_col), names_to = &#x27;key_col&#x27;, values_to = &#x27;value_col&#x27;)</code></td>
+            </tr>
+            <tr>
+                <td>Tune iteration bounds or change optimization engines</td>
+                <td><code>glmerControl()</code></td>
+                <td><span class="pkg-badge">lme4</span></td>
+                <td><code class="example-code">glmerControl(optimizer = &#x27;bobyqa&#x27;, optCtrl = list(maxfun = 1e5))</code></td>
+            </tr>
+            <tr>
+                <td>Wrap graphical text labels dynamically inline</td>
+                <td><code>str_wrap()</code></td>
+                <td><span class="pkg-badge">stringr</span></td>
+                <td><code class="example-code">scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 6))</code></td>
+            </tr>
         </tbody>
     </table>
 
