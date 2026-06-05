@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My R Workflow Lookup Map</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; margin: 40px; color: #24292e; }
+        h1 { border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
+        #searchInput { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #e1e4e8; border-radius: 6px; font-size: 16px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { text-align: left; padding: 12px; border-bottom: 1px solid #e1e4e8; }
+        th { background-color: #f6f8fa; }
+        tr:hover { background-color: #f6f8fa; }
+        code { background-color: rgba(27,31,35,0.05); padding: .2em .4em; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 85%; }
+        .example-code { color: #005cc5; }
+    </style>
+</head>
+<body>
+
+    <h1>My R Workflow Function Lookup</h1>
+    <p>Type what you intend to do in the search box below to find the correct R function instantly.</p>
+    
+    <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search for an action, function, or package...">
+
+    <table id="lookupTable">
+        <thead>
+            <tr>
+                <th style="width: 35%;">My Intent / What Action I Want to Do</th>
+                <th style="width: 15%;">Function</th>
+                <th style="width: 10%;">Package</th>
+                <th style="width: 40%;">Operational Implementation Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>A</b>dd a baseline identity line to a scatterplot</td>
+                <td><code>geom_abline()</code></td>
+                <td>ggplot2</td>
+                <td><code class="example-code">geom_abline(slope = 1, intercept = 0, linetype = 'dashed')</code></td>
+            </tr>
+            <tr>
+                <td><b>A</b>ggregate statistics with multi-level groupings</td>
+                <td><code>summarise()</code></td>
+                <td>dplyr</td>
+                <td><code class="example-code">summarise(Mean = mean(acc), SD = sd(acc), .groups = 'drop')</code></td>
+            </tr>
+            <tr>
+                <td><b>C</b>heck models for singular / over-parameterization</td>
+                <td><code>isSingular()</code></td>
+                <td>lme4</td>
+                <td><code class="example-code">isSingular(my_glmer_model)</code></td>
+            </tr>
+            <!-- Repeat for other rows -->
+        </tbody>
+    </table>
+
+    <script>
+    function filterTable() {
+        var input, filter, table, tr, td, i, j, txtValue, match;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("lookupTable");
+        tr = table.getElementsByTagName("tr");
+        
+        for (i = 1; i < tr.length; i++) {
+            match = false;
+            td = tr[i].getElementsByTagName("td");
+            for (j = 0; j < td.length; j++) {
+                if (td[j]) {
+                    txtValue = td[j].textContent || td[j].innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        match = true;
+                        break;
+                    }
+                }
+            }
+            tr[i].style.display = match ? "" : "none";
+        }
+    }
+    </script>
+</body>
+</html>
